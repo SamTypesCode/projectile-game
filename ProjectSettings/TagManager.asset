@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Cannon Ball
+  - Target
+  - Radio
   layers:
   - Default
   - TransparentFX

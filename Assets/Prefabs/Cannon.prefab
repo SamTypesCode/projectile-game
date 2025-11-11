@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1136345379386634340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.37000018, y: 0.16000003, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0.060000002, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7772191112685151638, guid: fabc14229efe1414ba69de437016de6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -133,14 +133,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cannon
   barrelTip: {fileID: 8586899973493693532}
   cannonballPrefab: {fileID: 2715900818893852791, guid: d2a56a416127e674d9ffc0b7e945ab59, type: 3}
-  shootForce: 15
   fuseAudio: {fileID: 7237698658785636528}
   shootAudio: {fileID: 1637528863987798644}
+  rotationAudio: {fileID: 8505808329258827163}
   fuseClip: {fileID: 8300000, guid: 3e9c6d59a2b10b74a9c475effe4dcec5, type: 3}
   shootClip: {fileID: 8300000, guid: 71567f15204255443867419e4de57fbd, type: 3}
+  rotationClip: {fileID: 8300000, guid: 15230d6eb79631f43b7b7d7725245d23, type: 3}
   barrelAnimator: {fileID: 1593962034899478555}
   shootAnimationName: Shoot
-  shootDelaySeconds: 0.9
+  rotationSpeed: 15
 --- !u!82 &7237698658785636528
 AudioSource:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: -0.67
+  Pan2D: 0.47
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -261,7 +262,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: -0.67
+  Pan2D: 0.47
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -358,7 +359,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 0.47
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -445,14 +446,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyboardControls
   cannon: {fileID: 2756075602635031266}
-  cannonTransform: {fileID: 1412055694601197790}
-  rotationSpeed: 15
-  minRotation: -15
-  maxRotation: 60
-  rotationSource: {fileID: 8505808329258827163}
-  rotationClip: {fileID: 8300000, guid: 15230d6eb79631f43b7b7d7725245d23, type: 3}
-  rotateLeftKey: 97
-  rotateRightKey: 100
+  targetAngle: 45
+  targetVelocity: 10
   shootKey: 32
 --- !u!1 &1646386862547967884
 GameObject:
@@ -633,7 +628,7 @@ Transform:
   m_GameObject: {fileID: 8279950446377410710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0.8, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

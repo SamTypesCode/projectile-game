@@ -6,61 +6,78 @@ public class Cannon : MonoBehaviour
     [Header("Setup")]
     public Transform barrelTip;
     public GameObject cannonballPrefab;
-    public float shootForce = 10f;
 
     [Header("Audio")]
     public AudioSource fuseAudio;
     public AudioSource shootAudio;
+    public AudioSource rotationAudio;
     public AudioClip fuseClip;
     public AudioClip shootClip;
+    public AudioClip rotationClip;
 
     [Header("Animation")]
     public Animator barrelAnimator;
     public string shootAnimationName = "Shoot";
-    public float shootDelaySeconds = 0.9f;
+
+    [Header("Rotation")]
+    public float rotationSpeed = 15f;
 
     private bool isShooting = false;
 
-    public void Shoot()
+    public void FireAtAngle(float targetAngle, float velocity)
     {
         if (!isShooting)
-            StartCoroutine(ShootRoutine());
+            StartCoroutine(RotateAndShoot(targetAngle, velocity));
     }
 
-    private IEnumerator ShootRoutine()
+    private IEnumerator RotateAndShoot(float targetAngle, float velocity)
     {
         isShooting = true;
+
+        if (rotationAudio != null && rotationClip != null)
+        {
+            rotationAudio.clip = rotationClip;
+            rotationAudio.loop = true;
+            rotationAudio.Play();
+        }
+
+        while (true)
+        {
+            float currentZ = transform.eulerAngles.z;
+            if (currentZ > 180f) currentZ -= 360f;
+
+            float step = rotationSpeed * Time.deltaTime;
+            float newZ = Mathf.MoveTowards(currentZ, targetAngle, step);
+            transform.rotation = Quaternion.Euler(0f, 0f, newZ);
+
+            if (Mathf.Abs(newZ - targetAngle) < 0.01f)
+                break;
+
+            yield return null;
+        }
+
+        if (rotationAudio != null && rotationAudio.isPlaying)
+            rotationAudio.Stop();
 
         if (barrelAnimator != null)
             barrelAnimator.Play(shootAnimationName, -1, 0f);
 
-        float elapsed = 0f;
-        while (elapsed < shootDelaySeconds)
-        {
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
+        if (fuseAudio != null && fuseClip != null)
+            fuseAudio.PlayOneShot(fuseClip);
+
+        yield return new WaitForSeconds(0.67f);
 
         if (cannonballPrefab != null && barrelTip != null)
         {
             GameObject cannonball = Instantiate(cannonballPrefab, barrelTip.position, barrelTip.rotation);
             Rigidbody2D rb = cannonball.GetComponent<Rigidbody2D>();
             if (rb != null)
-                rb.linearVelocity = barrelTip.right * shootForce;
+                rb.linearVelocity = barrelTip.right * velocity;
         }
 
-        isShooting = false;
-    }
-
-    public void PlayFuseSound()
-    {
-        if (fuseAudio != null && fuseClip != null)
-            fuseAudio.PlayOneShot(fuseClip);
-    }
-
-    public void PlayShootSound()
-    {
         if (shootAudio != null && shootClip != null)
             shootAudio.PlayOneShot(shootClip);
+
+        isShooting = false;
     }
 }

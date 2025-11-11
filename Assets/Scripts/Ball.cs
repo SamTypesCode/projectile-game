@@ -46,7 +46,11 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!hasLanded && collision.collider.CompareTag("Ground"))
+        if (hasLanded) return;
+
+        if (collision.collider.CompareTag("Ground") ||
+            collision.collider.CompareTag("Cannon Ball") ||
+            collision.collider.CompareTag("Target"))
         {
             hasLanded = true;
 

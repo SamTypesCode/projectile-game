@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7064186533931344668}
   m_Layer: 0
   m_Name: Cannon_Ball
-  m_TagString: Ground
+  m_TagString: Cannon Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,5 +191,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e149439576defc409349ee9b9ff6088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
-  aboveGroundOrder: 2
-  belowGroundOrder: 0
+  horizontalThreshold: 0.1
+  verticalThreshold: 0.1

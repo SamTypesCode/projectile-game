@@ -1,0 +1,18 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainMenuController : MonoBehaviour
+{
+    [Header("Next Scene")]
+    public string nextSceneName = "Level 1";
+
+    void Start() { }
+
+    void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+    }
+}

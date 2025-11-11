@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1299137631270920804}
   m_Layer: 0
   m_Name: Target
-  m_TagString: Ground
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,8 +157,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.6177565, y: 1.5458727}
-  - {x: -0.20480731, y: 0.35807383}
+  - {x: 0.34038597, y: 1.6808094}
+  - {x: -0.077367246, y: 0.26061943}
   - {x: -1.4238359, y: -1.6734735}
   - {x: -0.81860924, y: -1.6752442}
   - {x: -0.49769565, y: -1.0427172}
@@ -167,7 +167,7 @@ EdgeCollider2D:
   - {x: 1.4737151, y: -1.6922303}
   - {x: 0.97776675, y: -0.06491697}
   - {x: 1.0969311, y: 0.9516237}
-  - {x: 0.6306734, y: 1.5654474}
+  - {x: 0.33831102, y: 1.6853912}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
