@@ -21,11 +21,15 @@ public class Cannon : MonoBehaviour
 
     [Header("Rotation")]
     public float rotationSpeed = 15f;
+    public float minAngle = -15f;
+    public float maxAngle = 75f;
 
     private bool isShooting = false;
 
     public void FireAtAngle(float targetAngle, float velocity)
     {
+        targetAngle = Mathf.Clamp(targetAngle, minAngle, maxAngle);
+
         if (!isShooting)
             StartCoroutine(RotateAndShoot(targetAngle, velocity));
     }

@@ -1,15 +1,19 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Ball : MonoBehaviour
 {
     private Camera mainCamera;
     private Rigidbody2D rb;
-    private Animator animator;       
+    private Animator animator;
     private bool hasLanded = false;
 
     [Header("Destroy Thresholds")]
     public float horizontalThreshold = 0.1f;
     public float verticalThreshold = 0.1f;
+
+    private bool isInTargetTrigger = false;
 
     void Start()
     {
@@ -33,7 +37,11 @@ public class Ball : MonoBehaviour
         if (viewportPos.x < -horizontalThreshold || viewportPos.x > 1f + horizontalThreshold ||
             viewportPos.y < -verticalThreshold)
         {
-            Destroy(gameObject);
+            if (!hasLanded && !isInTargetTrigger) 
+            {
+                StartCoroutine(ReloadSceneAfterDelay(1f));
+            }
+
             return;
         }
 
@@ -48,6 +56,9 @@ public class Ball : MonoBehaviour
     {
         if (hasLanded) return;
 
+        if (collision.collider.CompareTag("Target") && isInTargetTrigger)
+            return;
+
         if (collision.collider.CompareTag("Ground") ||
             collision.collider.CompareTag("Cannon Ball") ||
             collision.collider.CompareTag("Target"))
@@ -56,6 +67,27 @@ public class Ball : MonoBehaviour
 
             if (animator != null)
                 animator.SetBool("Flying", false);
+
+            if (!isInTargetTrigger)
+                StartCoroutine(ReloadSceneAfterDelay(1f));
         }
+    }
+
+    private IEnumerator ReloadSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Target"))
+            isInTargetTrigger = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Target"))
+            isInTargetTrigger = false;
     }
 }

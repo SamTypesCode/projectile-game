@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7237698658785636528}
   - component: {fileID: 1637528863987798644}
   - component: {fileID: 8505808329258827163}
-  - component: {fileID: 839943185604366340}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -433,22 +432,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &839943185604366340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136345379386634340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af1cf1ac43ea3444e9f06c5db3cfdb37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KeyboardControls
-  cannon: {fileID: 2756075602635031266}
-  targetAngle: 45
-  targetVelocity: 10
-  shootKey: 32
 --- !u!1 &1646386862547967884
 GameObject:
   m_ObjectHideFlags: 0
