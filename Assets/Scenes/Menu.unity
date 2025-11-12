@@ -1601,6 +1601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target
       objectReference: {fileID: 0}
+    - target: {fileID: 9098463688218109146, guid: f97bab12e040dd34a8e9f2f4c9f70d34, type: 3}
+      propertyPath: nextSceneName
+      value: Menu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
